@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 16:35:42 by sghezn            #+#    #+#             */
-/*   Updated: 2020/01/03 17:50:32 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/01/07 21:37:35 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,39 @@
 # define PUSH_SWAP_H
 
 # include "libft/libft.h"
+# include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
 
 /*
-** The double linked list structure.
-*/
-
-typedef struct	s_dlist
-{
-	struct s_dlist	*prev;
-	struct s_dlist	*next;
-	int						value;
-}				t_dlist;
-
-/*
-** The stack structure.
+** Stacks are stored in double-linked lists with indexing.
 */
 
 typedef struct	s_stack
 {
-	t_dlist	*head;
-	t_dlist	*tail;
-	int		size;
+	struct s_stack	*prev;
+	struct s_stack	*next;
+	int				value;
+	int				index;
 }				t_stack;
 
-int	ft_check_duplicates(int argc, char **argv);
-int	ft_read_stack(int argc, char **argv, t_stack *stack);
+/*
+** Stacks A and B are stored in a s_game structure.
+*/
+
+typedef struct	s_game
+{
+	t_stack	*a_top;
+	t_stack	*b_top;
+	t_stack	*a_stack;
+	t_stack	*b_stack;
+	size_t	a_size;
+	size_t	b_size;
+}				t_game;
+
+int	ft_is_numeric(char *str);
+int	ft_atoi_limit(t_game *game, char *nbr, int *res);
+int	ft_check_duplicates(t_game *game, char *nbr);
+int	ft_read_stack(t_game *game, int argc, char **argv);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 16:57:44 by sghezn            #+#    #+#             */
-/*   Updated: 2020/01/03 17:33:08 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/01/07 20:56:43 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 
 int	main(int argc, char **argv)
 {
-	t_stack	a;
-	t_stack	b;
+	t_game	game;
 
 	if (argc < 2)
-		ft_putstr("usage: checker stack operation ...");
-	if (ft_read_stack(argc, argv, &a) < 0)
+		return (0);
+	ft_bzero(&game, sizeof(game));
+	if (!ft_read_stack(&game, argc, argv) || !ft_index_stack(&game))
 	{
 		ft_putstr_fd("Error\n", 2);
 		return (-1);

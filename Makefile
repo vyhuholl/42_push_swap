@@ -6,7 +6,7 @@
 #    By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/03 15:31:07 by sghezn            #+#    #+#              #
-#    Updated: 2020/01/03 17:37:51 by sghezn           ###   ########.fr        #
+#    Updated: 2020/01/07 20:36:58 by sghezn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME_CH := checker
 NAME_PS := push_swap
 
-SRC := check_duplicates.c stack.c
+SRC := error.c stack.c
 SRC_CH := checker.c
 SRC_PS := push_swap.c
 
