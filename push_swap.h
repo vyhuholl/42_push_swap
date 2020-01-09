@@ -6,14 +6,27 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 16:35:42 by sghezn            #+#    #+#             */
-/*   Updated: 2020/01/07 21:37:35 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/01/09 18:48:13 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# define SA 1
+# define SB 2
+# define SS 3
+# define PA 4
+# define PB 5
+# define RA 6
+# define RB 7
+# define RR 8
+# define RRA 9
+# define RRB 10
+# define RRR 11
+
 # include "libft/libft.h"
+# include "get_next_line.h"
 # include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -44,9 +57,22 @@ typedef struct	s_game
 	size_t	b_size;
 }				t_game;
 
-int	ft_is_numeric(char *str);
-int	ft_atoi_limit(t_game *game, char *nbr, int *res);
-int	ft_check_duplicates(t_game *game, char *nbr);
-int	ft_read_stack(t_game *game, int argc, char **argv);
+int		ft_is_numeric(char *str);
+int		ft_atoi_limit(t_game *game, char *nbr, int *res);
+int		ft_check_duplicates(t_game *game, char *nbr);
+int		ft_read_stack(t_game *game, int argc, char **argv);
+void	ft_swap(int *a, int *b);
+int		ft_partition(int **array, int **sort_by, int low, int high);
+void	ft_quicksort(int **array, int **sort_by, int low, int high);
+int		ft_index(t_game *game, int argc, char **argv);
+void	ft_op_swap(t_game *game, int op);
+void	ft_op_push(t_game *game, int op);
+void	ft_op_rotate(t_game *game, int op);
+void	ft_op_reverse_rotate(t_game *game, int op);
+void	ft_do_op(t_game *game, int op);
+int		ft_is_sorted(t_stack *stack);
+
+int		ft_checker_read_op(char *line);
+int		ft_checker_do_op(t_game *game, char *line);
 
 #endif

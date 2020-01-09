@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 17:18:49 by sghezn            #+#    #+#             */
-/*   Updated: 2020/01/07 21:24:12 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/01/09 16:54:08 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,33 @@
 /*
 ** Functions to perform operations with stacks.
 */
+
+/*
+** A function to sort the index of a stack (using quicksort).
+** Returns -1 in case of a memory error.
+*/
+
+int	ft_index(t_game *game, int argc, char **argv)
+{
+	t_stack	*ptr;
+	int		*temp;
+	int		i;
+
+	if (!(temp = (int*)malloc(sizeof(int) * (argc - 1))))
+		return (-1);
+	i = 0;
+	while (i < argc - 1)
+		temp[i] = i++;
+	ft_quicksort(&temp, argv, 0, argc - 2);
+	ptr = game->a_top;
+	while (ptr)
+	{
+		ptr->index = temp[--argc];
+		ptr = ptr->prev;
+	}
+	free(temp);
+	return (1);
+}
 
 /*
 ** A function to read input to stack A.
@@ -46,5 +73,6 @@ int	ft_read_stack(t_game *game, int argc, char **argv)
 		if (!ft_check_duplicates(game, argv[i++]))
 			return (-1);
 	}
+	game->a_size = argc - 1;
 	return (1);
 }

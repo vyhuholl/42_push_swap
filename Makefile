@@ -6,7 +6,7 @@
 #    By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/03 15:31:07 by sghezn            #+#    #+#              #
-#    Updated: 2020/01/07 20:36:58 by sghezn           ###   ########.fr        #
+#    Updated: 2020/01/09 17:52:52 by sghezn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME_CH := checker
 NAME_PS := push_swap
 
-SRC := error.c stack.c
+SRC := error.c get_next_line.c operation.c sort.c stack.c
 SRC_CH := checker.c
 SRC_PS := push_swap.c
 
@@ -23,7 +23,7 @@ OBJ := $(SRC:%.c=%.o)
 OBJ_CH := $(SRC_CH:%.c=%.o)
 OBJ_PS := $(SRC_PS:%.c=%.o)
 
-INC := -I push_swap.h -I ./libft/libft.h
+INC := -I push_swap.h -I get_next_line.h -I ./libft/libft.h
 LIB := -lft -L ./libft/
 
 CC := gcc
