@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 16:35:42 by sghezn            #+#    #+#             */
-/*   Updated: 2020/01/09 18:48:13 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/01/20 19:25:23 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ int		ft_partition(int **array, int **sort_by, int low, int high);
 void	ft_quicksort(int **array, int **sort_by, int low, int high);
 int		ft_index(t_game *game, int argc, char **argv);
 void	ft_op_swap(t_game *game, int op);
-void	ft_op_push(t_game *game, int op);
+void	ft_op_push_a(t_game *game, int op);
+void	ft_op_push_b(t_game *game, int op);
 void	ft_op_rotate(t_game *game, int op);
 void	ft_op_reverse_rotate(t_game *game, int op);
 void	ft_do_op(t_game *game, int op);

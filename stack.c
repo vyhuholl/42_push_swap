@@ -6,14 +6,14 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 17:18:49 by sghezn            #+#    #+#             */
-/*   Updated: 2020/01/09 16:54:08 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/01/20 19:24:34 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*
-** Functions to perform operations with stacks.
+** Functions for working with stacks.
 */
 
 /*
@@ -75,4 +75,22 @@ int	ft_read_stack(t_game *game, int argc, char **argv)
 	}
 	game->a_size = argc - 1;
 	return (1);
+}
+
+/*
+** A function to execute an operation on stack A, stack B or both.
+*/
+
+void	ft_do_op(t_game *game, int op)
+{
+	if (op < 4)
+		ft_op_swap(game, op);
+	else if (op == 4 && game->b_top)
+		ft_op_push_a(game, op);
+	else if (op == 5 && game->a_top)
+		ft_op_push_b(game, op);
+	else if (op > 5 && op < 9)
+		ft_op_rotate(game, op);
+	else if (op > 8)
+		ft_op_reverse_rotate(game, op);
 }

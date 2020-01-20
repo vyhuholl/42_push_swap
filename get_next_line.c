@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sghezn <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 11:37:12 by sghezn            #+#    #+#             */
-/*   Updated: 2019/04/20 11:37:13 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/01/20 19:13:20 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+/*
+** Utility function to read the next line from the file descriptor.
+*/
 
 char	*ft_join(char *str, char *tab)
 {

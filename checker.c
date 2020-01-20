@@ -6,11 +6,16 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 16:57:44 by sghezn            #+#    #+#             */
-/*   Updated: 2020/01/09 17:50:20 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/01/20 19:21:53 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** A program to check whether a given stack is sorted
+** after executing a given set of instructions.
+*/
 
 /*
 ** A function to read an operation from user input.
