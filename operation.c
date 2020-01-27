@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 17:51:58 by sghezn            #+#    #+#             */
-/*   Updated: 2020/01/20 19:33:09 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/01/27 20:07:11 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,31 @@ void	ft_op_swap(t_game *game, int op)
 /*
 ** A function to push the first element at the top of stack B
 ** to stack A, using a single temporary stack.
-** Increases the size of stack A and decreases the size of stack B by 1. 
+** Increases the size of stack A and decreases the size of stack B by 1.
 */
 
-void	ft_op_push_a(t_game *game, int op)
+void	ft_op_push_a(t_game *game)
 {
 	t_stack	*temp;
 
+	temp = game->b_top->prev;
+	game->b_top->prev = game->a_top;
+	if (!temp)
+		game->b_stack = NULL;
+	else
+		temp->next = NULL;
+	if (!game->a_top)
+	{
+		game->a_top = game->b_top;
+		game->a_stack = game->b_top;
+	}
+	else
+	{
+		game->a_top->next = game->b_top;
+		game->b_top->prev = game->a_top;
+		game->a_top = game->a_top->next;
+	}
+	game->b_top = temp;
 	(game->a_size)++;
 	(game->b_size)--;
 }
@@ -63,13 +81,31 @@ void	ft_op_push_a(t_game *game, int op)
 /*
 ** A function to push the first element at the top of stack A
 ** to stack B, using a single temporary stack.
-** Increases the size of stack B and decreases the size of stack A by 1. 
+** Increases the size of stack B and decreases the size of stack A by 1.
 */
 
-void	ft_op_push_b(t_game *game, int op)
+void	ft_op_push_b(t_game *game)
 {
 	t_stack	*temp;
 
+	temp = game->a_top->prev;
+	game->a_top->prev = game->b_top;
+	if (!temp)
+		game->a_stack = NULL;
+	else
+		temp->next = NULL;
+	if (!game->b_top)
+	{
+		game->b_top = game->a_top;
+		game->b_stack = game->a_top;
+	}
+	else
+	{
+		game->b_top->next = game->a_top;
+		game->a_top->prev = game->b_top;
+		game->b_top = game->b_top->next;
+	}
+	game->a_top = temp;
 	(game->b_size)++;
 	(game->a_size)--;
 }
@@ -80,7 +116,24 @@ void	ft_op_push_b(t_game *game, int op)
 
 void	ft_op_rotate(t_game *game, int op)
 {
-
+	if (op != RB && game->a_top && game->a_top != game->a_stack)
+	{
+		game->a_top->next = game->a_stack;
+		game->a_stack->prev = game->a_top;
+		game->a_top = game->a_top->prev;
+		game->a_stack = game->a_stack->prev;
+		game->a_top->next = NULL;
+		game->a_stack->prev = NULL;
+	}
+	if (op != RA && game->b_top && game->b_top != game->b_stack)
+	{
+		game->b_top->next = game->b_stack;
+		game->b_stack->prev = game->b_top;
+		game->b_top = game->b_top->prev;
+		game->b_stack = game->b_stack->prev;
+		game->b_top->next = NULL;
+		game->b_stack->prev = NULL;
+	}
 }
 
 /*
@@ -89,5 +142,22 @@ void	ft_op_rotate(t_game *game, int op)
 
 void	ft_op_reverse_rotate(t_game *game, int op)
 {
-
+	if (op != RRB && game->a_stack && game->a_top != game->a_stack)
+	{
+		game->a_stack->prev = game->a_top;
+		game->a_top->next = game->a_stack;
+		game->a_top = game->a_top->next;
+		game->a_stack = game->a_stack->next;
+		game->a_top->next = NULL;
+		game->a_stack->prev = NULL;
+	}
+	if (op != RRA && game->b_stack && game->b_top != game->b_stack)
+	{
+		game->b_stack->prev = game->b_top;
+		game->b_top->next = game->b_stack;
+		game->b_top = game->b_top->next;
+		game->b_stack = game->b_stack->next;
+		game->b_top->next = NULL;
+		game->b_stack->prev = NULL;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 20:36:23 by sghezn            #+#    #+#             */
-/*   Updated: 2020/01/09 15:18:01 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/01/27 20:33:03 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_is_numeric(char *str)
 ** (returns -1 if a number is too large or too small)
 */
 
-int	ft_atoi_limit(t_game *game, char *nbr, int *res)
+int	ft_atoi_limit(char *nbr, int *res)
 {
 	int		sign;
 	long	max;
@@ -74,7 +74,7 @@ int	ft_atoi_limit(t_game *game, char *nbr, int *res)
 
 int	ft_check_duplicates(t_game *game, char *nbr)
 {
-	if (!ft_atoi_limit(game, nbr, &(game->a_stack->value)))
+	if (!ft_atoi_limit(nbr, &(game->a_stack->value)))
 		return (-1);
 	game->b_stack = game->a_top;
 	while (game->a_stack != game->b_stack)

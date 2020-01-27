@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:37:03 by sghezn            #+#    #+#             */
-/*   Updated: 2020/01/09 17:03:29 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/01/27 20:06:17 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		ft_partition(int **array, int **sort_by, int low, int high)
 	while (j < high)
 	{
 		if ((*sort_by)[j] < pivot)
-			ft_swap(&((*array)[i++]), &((*array)[j]));		
+			ft_swap(&((*array)[i++]), &((*array)[j]));
 		j++;
 	}
 	ft_swap(&((*array)[i]), &((*array)[high]));
