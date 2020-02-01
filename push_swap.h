@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 16:35:42 by sghezn            #+#    #+#             */
-/*   Updated: 2020/01/27 20:48:39 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/02/01 14:32:47 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 
 /*
 ** Stacks are stored in double-linked lists with indexing.
-** Lists of instructions are also stored in s_stack structure.
+** Operations lists are also stored in s_stack structure.
 */
 
 typedef struct		s_stack
@@ -45,7 +45,7 @@ typedef struct		s_stack
 }					t_stack;
 
 /*
-** Stacks A and B are stored in a s_game structure.
+** Stack A, stack B and the operation list are stored in a s_game structure.
 */
 
 typedef struct		s_game
@@ -56,6 +56,8 @@ typedef struct		s_game
 	t_stack			*b_stack;
 	size_t			a_size;
 	size_t			b_size;
+	t_stack			*op_list_top;
+	t_stack			*op_list_stack;
 }					t_game;
 
 int					ft_is_numeric(char *str);
@@ -78,6 +80,7 @@ void				ft_del_stack(t_stack **stack);
 int					ft_checker_read_op(char *line);
 int					ft_checker_do_op(t_game *game, char *line);
 
+void				ft_ps_quicksort(t_game *game);
 void				ft_ps_print_op(int op);
 void				ft_ps_print_res(t_stack *res);
 

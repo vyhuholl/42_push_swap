@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 16:57:44 by sghezn            #+#    #+#             */
-/*   Updated: 2020/01/27 20:34:58 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/02/01 14:35:27 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	main(int argc, char **argv)
 			return (-1);
 		}
 	}
-	if (ft_is_sorted(&game->a_top) && &game->b_size == 0)
+	if (ft_is_sorted(game.a_top) && game.b_size == 0)
 		ft_putstr("OK\n");
 	else
 		ft_putstr("KO\n");

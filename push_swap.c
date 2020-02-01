@@ -6,14 +6,18 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 20:08:47 by sghezn            #+#    #+#             */
-/*   Updated: 2020/01/27 21:03:45 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/02/01 14:56:35 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*
-** A function to print a single instruction.
+** A program to find the smallest list of operations to sort a given stack.
+*/
+
+/*
+** A function to print a single operation.
 */
 
 void	ft_ps_print_op(int op)
@@ -43,7 +47,7 @@ void	ft_ps_print_op(int op)
 }
 
 /*
-** A function to print a list of instructions.
+** A function to print a list of operations.
 */
 
 void	ft_ps_print_res(t_stack *res)
@@ -59,13 +63,25 @@ void	ft_ps_print_res(t_stack *res)
 }
 
 /*
+** A function to quicksort stack A.
+** Resulting operations list is written to op_list_stack.
+*/
+
+void	ft_ps_quicksort(t_game *game)
+{
+	int	pivot;
+
+	if (game->a_size <= 4)
+		ft_ps_sort_small(game);
+}
+
+/*
 ** The main push_swap function.
 */
 
 int		main(int argc, char **argv)
 {
 	t_game	game;
-	t_stack	*res;
 
 	if (argc < 2)
 		return (0);
@@ -75,9 +91,10 @@ int		main(int argc, char **argv)
 		ft_putstr_fd("Error\n", 2);
 		return (-1);
 	}
-	if (ft_is_sorted(&game->a_top))
+	if (ft_is_sorted(game.a_top))
 		return (0);
-	ft_ps_print_res(res);
-	ft_del_stack(&res);
+	ft_ps_quicksort(&game);
+	ft_ps_print_res(game.op_list_stack);
+	ft_del_stack(&game.op_list_stack);
 	return (0);
 }
