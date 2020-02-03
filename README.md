@@ -9,15 +9,27 @@ For more detailed explanation please read `push_swap.en.pdf`.<br>
 # **Sorting algorithm**
 ## **Quicksort**
 <br>
-I implemented a quicksort algorithm:<br>
+I implemented a quicksort algorithm:<br><br>
 
 1. Pivot element is selected.
 2. Partition: all elements of stack A with values less than the pivot are pushed to stack B, all elements of stack B with values greater than the pivot are pushed to stack A.
 3. Stack A is sorted recursively.
 4. Stack B is sorted recursively.
 
-The base case of the recursion is a stack with size 4 or less. These stacks are sorted with another function.<br>
+The base case of the recursion is a stack with size 3 or less. These stacks are sorted with another function.<br>
 The resulting list of operations is then optimized – redundant sets of operations are removed.<br>
-## **Base case – stacks with size 4 or less**
+## **Base case – stacks with size 3 or less**
+There are six possible cases of how three numbers are arranged in a stack:
+
+1. 1 2 3 – do nothing.
+2. 1 3 2 –
+3. 2 1 3 –
+4. 2 3 1 –
+5. 3 1 2 –
+6. 3 2 1 –
+
+<br>
+
+## **Optimization**
 <br>
 Source of `test.sh` – https://github.com/ksnow-be/push_swap_checker

@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 20:08:47 by sghezn            #+#    #+#             */
-/*   Updated: 2020/02/01 14:56:35 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/02/03 20:33:15 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,62 @@
 /*
 ** A program to find the smallest list of operations to sort a given stack.
 */
+
+/*
+** A function to execute an operation and write it to the operations list.
+*/
+
+void	ft_ps_do_op(t_game *game, int op)
+{
+	t_stack	*elem;
+
+	ft_do_op(game, op);
+	if (!(game->op_list_top))
+	{
+		game->op_list_top = ft_memalloc(sizeof(t_stack));
+		game->op_list_top->value = op;
+		game->op_list_stack = game->op_list_top;
+	}
+	else
+	{
+		elem = ft_memalloc(sizeof(t_stack));
+		elem->val = op;
+		elem->prev = game->op_list_stack;
+		game->op_list_stack->next = elem;
+		game->op_list_stack = elem;
+	}
+}
+
+/*
+** A function to quicksort stack A.
+** Resulting operations list is written to op_list_stack.
+*/
+
+void	ft_ps_quicksort(t_game *game, char stack, int size, int deep)
+{
+	int	pivot;
+
+	if (size <= 3)
+		if (stack == 'a')
+			ft_ps_sort_small_a(game, size);
+		else
+			ft_ps_sort_small_b(game, size);
+	else
+	{
+		if (stack == 'a')
+		{
+			pivot = ft_ps_partition_a(game, size, deep, -1);
+			ft_ps_quicksort(game, pivot, 'a', deep + 1);
+			ft_ps_quicksort(game, size - pivot, 'b', deep + 1);
+		}
+		else
+		{
+			pivot = ft_ps_partition_b(game, size);
+			ft_ps_quicksort(game, size - pivot, 'a', deep + 1);
+			ft_ps_quicksort(game, pivot, 'b', deep + 1);
+		}
+	}
+}
 
 /*
 ** A function to print a single operation.
@@ -63,19 +119,6 @@ void	ft_ps_print_res(t_stack *res)
 }
 
 /*
-** A function to quicksort stack A.
-** Resulting operations list is written to op_list_stack.
-*/
-
-void	ft_ps_quicksort(t_game *game)
-{
-	int	pivot;
-
-	if (game->a_size <= 4)
-		ft_ps_sort_small(game);
-}
-
-/*
 ** The main push_swap function.
 */
 
@@ -93,7 +136,7 @@ int		main(int argc, char **argv)
 	}
 	if (ft_is_sorted(game.a_top))
 		return (0);
-	ft_ps_quicksort(&game);
+	ft_ps_quicksort(&game, 'a', game.a_size, 0);
 	ft_ps_print_res(game.op_list_stack);
 	ft_del_stack(&game.op_list_stack);
 	return (0);

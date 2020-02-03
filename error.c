@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 20:36:23 by sghezn            #+#    #+#             */
-/*   Updated: 2020/01/27 20:33:03 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/02/03 20:22:27 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,8 @@ int	ft_is_numeric(char *str)
 		return (-1);
 	i = (str[0] == '-' || str[0] == '+') ? 1 : 0;
 	while (str[i])
-	{
 		if (!ft_isdigit(str[i++]))
 			return (-1);
-	}
 	return (1);
 }
 
