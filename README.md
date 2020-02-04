@@ -19,6 +19,8 @@ I implemented a quicksort algorithm:<br><br>
 The base case of the recursion is a stack with size 3 or less. These stacks are sorted with another function.<br>
 The resulting list of operations is then optimized – redundant sets of operations are removed.<br>
 ## **Base case – stacks with size 3 or less**
+For stacks witb size 1, we do nothing.<br>
+For stacks with size 2, we swap elements if needed.<br>
 There are six possible cases of how three numbers are arranged in a stack:
 
 1. 1 2 3 – do nothing.

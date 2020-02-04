@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 20:36:34 by sghezn            #+#    #+#             */
-/*   Updated: 2020/02/03 20:58:38 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/02/04 20:15:52 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,30 @@
 ** 6 – 3 2 1
 */
 
-int		ft_three_numbers_case(t_stack *stack)
+int		ft_ps_three_numbers_case(t_stack *stack)
 {
-
+	if (!stack || !(stack->prev) || !(stack->prev->prev))
+		return (0);
+	if (stack->value < stack->prev->value
+			&& stack->prev->value < stack->prev->prev->value
+			&& stack->value < stack->prev->prev->value)
+		return (1);
+	else if (stack->value < stack->prev->value
+			&& stack->value < stack->prev->prev->value)
+		return (2);
+	else if (stack->value > stack->prev->value
+			&& stack->value < stack->prev->prev->value)
+		return (3);
+	else if (stack->value < stack->prev->value
+			&& stack->value > stack->prev->prev->value)
+		return (4);
+	else if (stack->value > stack->prev->value
+			&& stack->prev->value < stack->prev->prev->value)
+		return (5);
+	else if (stack->value > stack->prev->value
+			&& stack->prev->value > stack->prev->prev->value)
+		return (6);
+	return (0);
 }
 
 /*
@@ -38,7 +59,11 @@ int		ft_three_numbers_case(t_stack *stack)
 
 void	ft_ps_sort_small_a(t_game *game, int size)
 {
+	int	case;
 
+	case = ft_ps_three_numbers_case(game->a_top);
+	if (size == 2 && game->a_top->value > game-a_top->prev->value)
+		ft_ps_do_op(game, SA);
 }
 
 /*
@@ -47,5 +72,7 @@ void	ft_ps_sort_small_a(t_game *game, int size)
 
 void	ft_ps_sort_small_b(t_game *game, int size)
 {
-	
+	int	case;
+
+	case = ft_ps_three_numbers_case(game->b_top);
 }
