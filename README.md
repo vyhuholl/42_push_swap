@@ -20,13 +20,13 @@ The base case of the recursion is a stack with size 3 or less. These stacks are 
 The resulting list of operations is then optimized – redundant sets of operations are removed.<br>
 ## **Base case – stacks with size 3 or less**
 For stacks witb size 1, we do nothing.<br>
-For stacks with size 2, we swap elements if needed.<br>
+For stacks with size 2, we swap elements if needed, and, for stack B, push both elements to stack A.<br>
 There are six possible cases of how three numbers are arranged in a stack:
 
 1. 1 2 3 – do nothing.
-2. 1 3 2 –
-3. 2 1 3 –
-4. 2 3 1 –
+2. 1 3 2 – if stack A contains exactly 3 elements, we rotate stack A (it becomes 3 2 1), swap the first two elements at the top of stack A (it becomes 2 3 1), and then reverse rotate stack A (if becomes 1 2 3). If stack B contains exactly 3 elements, we push the first element of the top of stack B to stack A, swap the remaining two elements of stack B and then push them both to stack A. If the needed stack contains more than 3 elements, we do nothing.
+3. 2 1 3 – if stack A contains exactly 3 elements, we swap the first two elements at the top of stack A. If stack B contains exactly 3 elements, we swap the first two elements at the top of stack B, and then push them all to stack A. If the needed stack contains more than 3 elements, we do nothing.
+4. 2 3 1 – if stack A contains exactly 3 elements, we reverse rotate it. If stack A contains more than 3 elements, we rotate it, swap the first two elements at the top of it, reverse rotate if and then swap the first two elements at the top of it again.
 5. 3 1 2 –
 6. 3 2 1 –
 
