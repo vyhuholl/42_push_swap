@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 17:51:58 by sghezn            #+#    #+#             */
-/*   Updated: 2020/01/27 20:07:11 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/02/11 16:42:51 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	ft_op_push_a(t_game *game)
 {
 	t_stack	*temp;
 
+	if (!game->b_size)
+		return ;
 	temp = game->b_top->prev;
 	game->b_top->prev = game->a_top;
 	if (!temp)
@@ -88,6 +90,8 @@ void	ft_op_push_b(t_game *game)
 {
 	t_stack	*temp;
 
+	if (!game->a_size)
+		return ;
 	temp = game->a_top->prev;
 	game->a_top->prev = game->b_top;
 	if (!temp)

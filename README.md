@@ -5,8 +5,10 @@ Another School 21 project. **checker** – a program to check whether a given se
 * **ra**, **rb**, **rr** – rotate stack A, stack B or both by 1;
 * **rra**, **rrb**, **rrr** – reverse rotate stack A, stack B or both by 1;
 
-For more detailed explanation please read `push_swap.en.pdf`.<br>
+For more detailed explanation please read `push_swap.en.pdf`.<br><br>
+
 # **Sorting algorithm**
+
 ## **Quicksort**
 <br>
 I implemented a quicksort algorithm:<br><br>
@@ -18,20 +20,39 @@ I implemented a quicksort algorithm:<br><br>
 
 The base case of the recursion is a stack with size 3 or less. These stacks are sorted with another function.<br>
 The resulting list of operations is then optimized – redundant sets of operations are removed.<br>
+
 ## **Base case – stacks with size 3 or less**
+<br>
+
+### **Stack A**
+
+<br>
 For stacks witb size 1, we do nothing.<br>
-For stacks with size 2, we swap elements if needed, and, for stack B, push both elements to stack A.<br>
-There are six possible cases of how three numbers are arranged in a stack:
+For stacks with size 2, we swap elements if needed.<br>
+For stacks with size 3 or more, there are six possible cases of how the first three numbers are arranged in a stack:<br><br>
 
 1. 1 2 3 – do nothing.
-2. 1 3 2 – if stack A contains exactly 3 elements, we rotate stack A (it becomes 3 2 1), swap the first two elements at the top of stack A (it becomes 2 3 1), and then reverse rotate stack A (if becomes 1 2 3). If stack B contains exactly 3 elements, we push the first element of the top of stack B to stack A, swap the remaining two elements of stack B and then push them both to stack A. If the needed stack contains more than 3 elements, we do nothing.
-3. 2 1 3 – if stack A contains exactly 3 elements, we swap the first two elements at the top of stack A. If stack B contains exactly 3 elements, we swap the first two elements at the top of stack B, and then push them all to stack A. If the needed stack contains more than 3 elements, we do nothing.
-4. 2 3 1 – if stack A contains exactly 3 elements, we reverse rotate it. If stack A contains more than 3 elements, we rotate it, swap the first two elements at the top of it, reverse rotate if and then swap the first two elements at the top of it again.
+2. 1 3 2 – if stack A contains exactly 3 elements, we rotate it (it becomes 3 2 1), swap the first two elements again (it becomes 2 3 1), and then reverse rotate it (it becomes 1 2 3), else we do nothing.
+3. 2 1 3 – if stack A contains exactly 3 elements, we swap the first two elements at the top of it, else we do nothing.
+4. 2 3 1 – if stack A contains exactly 3 elements, we reverse rotate it, else we rotate it (it becomes 3 1 ... 2), swap the first two elements at the top of it (it becomes 1 3 ... 2), reverse rotate it (it becomes 2 1 3 ... ) and then swap the first two elements again (it becomes 1 2 3 .. ).
+5. 3 1 2 – if stack A contains exactly 3 elements, we rotate it, else we swap the first two elements at the top of it (it becomes 1 3 2 ... ), rotate it (it becomes 3 2 ... 1), swap the first two elements again (it becomes 2 3 ... 1) and then reverse rotate it (1 2 3 ... ).
+6. 3 2 1 – if stack A contains exactly 3 elements, we swap the first two elements at the top of it (it becomes 2 3 1) and then reverse rotate it (it becomes 1 2 3), else we swap the first two elements at the top of it (it becomes 2 3 1 ...), rotate it (it becomes 3 1 ... 2), swap the first two elements again (it becomes 1 3 ... 2), reverse rotate it (it becomes 2 1 3 ...) and then swap the first two elements again (it becomes 1 2 3).
+
+### **Stack B**
+
+<br>
+For stacks witb size 1, we push the only element to stack A.<br>
+For stacks with size 2, we swap elements if needed and then push both elements to stack A.<br>
+For stacks with size 3, there are six possible cases of how the first three numbers are arranged in a stack:<br><br>
+
+1. 1 2 3 –
+2. 1 3 2 –
+3. 2 1 3 –
+4. 2 3 1 –
 5. 3 1 2 –
 6. 3 2 1 –
 
-<br>
-
 ## **Optimization**
+
 <br>
 Source of `test.sh` – https://github.com/ksnow-be/push_swap_checker
