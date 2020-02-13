@@ -26,7 +26,7 @@ The resulting list of operations is then optimized – redundant sets of operati
 
 ### **Stack A**
 
-For stacks witb size 1, we do nothing.<br>
+For stacks with size 1, we do nothing.<br>
 For stacks with size 2, we swap elements if the first element is greater than the second.<br>
 For stacks with size 3 or more, there are six possible cases of how the first three numbers are arranged in a stack:<br>
 
