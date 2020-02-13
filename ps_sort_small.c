@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 20:36:34 by sghezn            #+#    #+#             */
-/*   Updated: 2020/02/11 18:00:18 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/02/13 23:55:40 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,23 +55,23 @@ int		ft_ps_three_numbers_case(t_stack *stack)
 ** A function to sort stack A with size > 3.
 */
 
-void	ft_ps_sort_more_than_three_a(t_game *game, int size, int case)
+void	ft_ps_sort_more_than_three_a(t_game *game, int size, int var)
 {
-	if (case == 4)
+	if (var == 4)
 	{
 		ft_ps_do_op(game, RA);
 		ft_ps_do_op(game, SA);
 		ft_ps_do_op(game, RRA);
 		ft_ps_do_op(game, SA);
 	}
-	else if (case == 5)
+	else if (var == 5)
 	{
 		ft_ps_do_op(game, SA);
 		ft_ps_do_op(game, RA);
 		ft_ps_do_op(game, SA);
 		ft_ps_do_op(game, RRA);
 	}
-	else if (case == 6)
+	else if (var == 6)
 	{
 		ft_ps_do_op(game, SA);
 		ft_ps_do_op(game, RA);
@@ -79,15 +79,6 @@ void	ft_ps_sort_more_than_three_a(t_game *game, int size, int case)
 		ft_ps_do_op(game, RRA);
 		ft_ps_do_op(game, SA);
 	}
-}
-
-/*
-** A function to sort stack B with size > 3.
-*/
-
-void	ft_ps_sort_more_than_three_b(t_game *game, int size, int case)
-{
-	
 }
 
 /*
@@ -96,30 +87,39 @@ void	ft_ps_sort_more_than_three_b(t_game *game, int size, int case)
 
 void	ft_ps_sort_small_a(t_game *game, int size)
 {
-	int	case;
+	int	var;
 
-	case = game->a_size < 3 ? 0 : ft_ps_three_numbers_case(game->a_top);
-	if (size == 2 && game->a_top->value > game->a_top->prev->value)
+	var = game->a_size < 3 ? 0 : ft_ps_three_numbers_case(game->a_top);
+	if (game->a_size > 3)
+		ft_ps_sort_more_than_three_a(game, size, var);
+	else if (size == 2 && game->a_top->value > game->a_top->prev->value)
 		ft_ps_do_op(game, SA);
-	else if (game->a_size > 3 && case > 3)
-		ft_ps_sort_more_than_three_a(game, size, case)
-	else if (case == 2)
+	else if (var == 2)
 	{
 		ft_ps_do_op(game, RA);
 		ft_ps_do_op(game, SA);
 		ft_ps_do_op(game, RRA);
 	}
-	else if (case == 3)
+	else if (var == 3)
 		ft_ps_do_op(game, SA);
-	else if (case == 4)
+	else if (var == 4)
 		ft_ps_do_op(game, RRA);
-	else if (case == 5)
+	else if (var == 5)
 		ft_ps_do_op(game, RA);
-	else if (case == 6)
+	else if (var == 6)
 	{
 		ft_ps_do_op(game, SA);
 		ft_ps_do_op(game, RRA);
 	}
+}
+
+/*
+** A function to sort stack B with size > 3.
+*/
+
+void	ft_ps_sort_more_than_three_b(t_game *game, int size, int var)
+{
+	
 }
 
 /*
@@ -128,5 +128,20 @@ void	ft_ps_sort_small_a(t_game *game, int size)
 
 void	ft_ps_sort_small_b(t_game *game, int size)
 {
+	int	var;
+	int flag;
 
+	var = game->b_size < 3 ? 0 : ft_ps_three_numbers_case(game->b_top);
+	flag = game->b_size > 3 ? 0 : 1;
+	if (game->b_size > 3)
+		ft_ps_sort_more_than_three_b(game, size, var);
+	else if (size == 2 && game->b_top->value < game->b_top->prev->value)
+		ft_ps_do_op(game, SB);
+	else if (var == 1)
+	{
+		ft_ps_do_op(game, SB);
+		ft_ps_do_op(game, RRB);		
+	}
+	while (flag && var != 5 && game->b_size)
+		ft_ps_do_op(game, PA);
 }

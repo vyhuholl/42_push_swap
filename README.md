@@ -28,29 +28,29 @@ The resulting list of operations is then optimized – redundant sets of operati
 
 <br>
 For stacks witb size 1, we do nothing.<br>
-For stacks with size 2, we swap elements if needed.<br>
+For stacks with size 2, we swap elements if the first element is greater than the second.<br>
 For stacks with size 3 or more, there are six possible cases of how the first three numbers are arranged in a stack:<br><br>
 
 1. 1 2 3 – do nothing.
 2. 1 3 2 – if stack A contains exactly 3 elements, we rotate it (it becomes 3 2 1), swap the first two elements again (it becomes 2 3 1), and then reverse rotate it (it becomes 1 2 3), else we do nothing.
 3. 2 1 3 – if stack A contains exactly 3 elements, we swap the first two elements at the top of it, else we do nothing.
-4. 2 3 1 – if stack A contains exactly 3 elements, we reverse rotate it, else we rotate it (it becomes 3 1 ... 2), swap the first two elements at the top of it (it becomes 1 3 ... 2), reverse rotate it (it becomes 2 1 3 ... ) and then swap the first two elements again (it becomes 1 2 3 .. ).
-5. 3 1 2 – if stack A contains exactly 3 elements, we rotate it, else we swap the first two elements at the top of it (it becomes 1 3 2 ... ), rotate it (it becomes 3 2 ... 1), swap the first two elements again (it becomes 2 3 ... 1) and then reverse rotate it (1 2 3 ... ).
-6. 3 2 1 – if stack A contains exactly 3 elements, we swap the first two elements at the top of it (it becomes 2 3 1) and then reverse rotate it (it becomes 1 2 3), else we swap the first two elements at the top of it (it becomes 2 3 1 ...), rotate it (it becomes 3 1 ... 2), swap the first two elements again (it becomes 1 3 ... 2), reverse rotate it (it becomes 2 1 3 ...) and then swap the first two elements again (it becomes 1 2 3).
+4. 2 3 1 – if stack A contains exactly 3 elements, we reverse rotate it, else we rotate it (it becomes 3 1 ... 2), swap the first two elements at the top of it (it becomes 1 3 ... 2), reverse rotate it (it becomes 2 1 3 ... ) and then swap the first two elements again (it becomes 1 2 3 ... ).
+5. 3 1 2 – if stack A contains exactly 3 elements, we rotate it, else we swap the first two elements at the top of it (it becomes 1 3 2 ... ), rotate it (it becomes 3 2 ... 1), swap the first two elements again (it becomes 2 3 ... 1) and then reverse rotate it (it becomes 1 2 3 ... ).
+6. 3 2 1 – if stack A contains exactly 3 elements, we swap the first two elements at the top of it (it becomes 2 3 1) and then reverse rotate it (it becomes 1 2 3), else we swap the first two elements at the top of it (it becomes 2 3 1 ...), rotate it (it becomes 3 1 ... 2), swap the first two elements again (it becomes 1 3 ... 2), reverse rotate it (it becomes 2 1 3 ... ) and then swap the first two elements again (it becomes 1 2 3 ... ).
 
 ### **Stack B**
 
 <br>
 For stacks witb size 1, we push the only element to stack A.<br>
-For stacks with size 2, we swap elements if needed and then push both elements to stack A.<br>
+For stacks with size 2, we swap elements if the first element is lesser than the second and then push both elements to stack A.<br>
 For stacks with size 3, there are six possible cases of how the first three numbers are arranged in a stack:<br><br>
 
-1. 1 2 3 –
-2. 1 3 2 –
+1. 1 2 3 – if stack B contains exactly 3 elements, we swap the first two elements at the top of it (it becomes 2 1 3), reverse rotate it (it becomes 3 2 1) and then push all elements to stack A, else we rotate it (it becomes 2 3 ... 1), swap the first two elements at the top of it (it becomes 3 2 ... 1), push the first two elements at the top of it to stack A, reverse rotate it (it becomes 1 ... ) and then push the first element at the top of is to stack A.
+2. 1 3 2 – 
 3. 2 1 3 –
 4. 2 3 1 –
 5. 3 1 2 –
-6. 3 2 1 –
+6. 3 2 1 – if stack B contains exactly 3 elements, we push them all to stack A, else we do nothing.
 
 ## **Optimization**
 
