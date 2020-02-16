@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 20:36:34 by sghezn            #+#    #+#             */
-/*   Updated: 2020/02/13 23:55:40 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/02/16 19:34:14 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 /*
 ** A function to determine how the first three numbers are arranged in a stack.
 ** Return cases:
+** 0 – the size of the stack is lesser than 3
 ** 1 – 1 2 3
 ** 2 – 1 3 2
 ** 3 – 2 1 3
@@ -29,25 +30,28 @@
 
 int		ft_ps_three_numbers_case(t_stack *stack)
 {
-	if (stack->value < stack->prev->value
+	if (stack && stack->prev && stack->prev->prev)
+	{
+		if (stack->value < stack->prev->value
 			&& stack->prev->value < stack->prev->prev->value
 			&& stack->value < stack->prev->prev->value)
-		return (1);
-	else if (stack->value < stack->prev->value
-			&& stack->value < stack->prev->prev->value)
-		return (2);
-	else if (stack->value > stack->prev->value
-			&& stack->value < stack->prev->prev->value)
-		return (3);
-	else if (stack->value < stack->prev->value
-			&& stack->value > stack->prev->prev->value)
-		return (4);
-	else if (stack->value > stack->prev->value
-			&& stack->prev->value < stack->prev->prev->value)
-		return (5);
-	else if (stack->value > stack->prev->value
-			&& stack->prev->value > stack->prev->prev->value)
-		return (6);
+			return (1);
+		else if (stack->value < stack->prev->value
+				&& stack->value < stack->prev->prev->value)
+			return (2);
+		else if (stack->value > stack->prev->value
+				&& stack->value < stack->prev->prev->value)
+			return (3);
+		else if (stack->value < stack->prev->value
+				&& stack->value > stack->prev->prev->value)
+			return (4);
+		else if (stack->value > stack->prev->value
+				&& stack->prev->value < stack->prev->prev->value)
+			return (5);
+		else if (stack->value > stack->prev->value
+				&& stack->prev->value > stack->prev->prev->value)
+			return (6);
+	}
 	return (0);
 }
 
@@ -89,7 +93,7 @@ void	ft_ps_sort_small_a(t_game *game, int size)
 {
 	int	var;
 
-	var = game->a_size < 3 ? 0 : ft_ps_three_numbers_case(game->a_top);
+	var = ft_ps_three_numbers_case(game->a_top);
 	if (game->a_size > 3)
 		ft_ps_sort_more_than_three_a(game, size, var);
 	else if (size == 2 && game->a_top->value > game->a_top->prev->value)
@@ -119,7 +123,31 @@ void	ft_ps_sort_small_a(t_game *game, int size)
 
 void	ft_ps_sort_more_than_three_b(t_game *game, int size, int var)
 {
-	
+	if (var == 1)
+	{
+		ft_ps_do_op(game, RB);
+		ft_ps_do_op(game, SB);
+		ft_ps_do_op(game, PA);
+		ft_ps_do_op(game, PA);
+		ft_ps_do_op(game, RRB);
+		ft_ps_do_op(game, PA);
+	}
+	else if (var == 2)
+	{
+		ft_ps_do_op(game, SB);
+		ft_ps_do_op(game, PA);
+		ft_ps_do_op(game, SB);
+		ft_ps_do_op(game, PA);
+		ft_ps_do_op(game, PA);
+	}
+	else if (var == 3)
+	{
+		ft_ps_do_op(game, PA);
+		ft_ps_do_op(game, SB);
+		ft_ps_do_op(game, PA);
+		ft_ps_do_op(game, SA);
+		ft_ps_do_op(game, PA);
+	}
 }
 
 /*
@@ -129,19 +157,26 @@ void	ft_ps_sort_more_than_three_b(t_game *game, int size, int var)
 void	ft_ps_sort_small_b(t_game *game, int size)
 {
 	int	var;
-	int flag;
 
-	var = game->b_size < 3 ? 0 : ft_ps_three_numbers_case(game->b_top);
-	flag = game->b_size > 3 ? 0 : 1;
+	var = ft_ps_three_numbers_case(game->b_top);
 	if (game->b_size > 3)
 		ft_ps_sort_more_than_three_b(game, size, var);
-	else if (size == 2 && game->b_top->value < game->b_top->prev->value)
-		ft_ps_do_op(game, SB);
-	else if (var == 1)
+	else
 	{
-		ft_ps_do_op(game, SB);
-		ft_ps_do_op(game, RRB);		
+		if (size == 2 && game->b_top->value < game->b_top->prev->value)
+			ft_ps_do_op(game, SB);
+		else if (var == 1)
+		{
+			ft_ps_do_op(game, SB);
+			ft_ps_do_op(game, RRB);
+		}
+		else if (var == 2)
+			ft_ps_do_op(game, RB);
+		else if (var == 3)
+			ft_ps_do_op(game, RRB);
+		else if (var == 4)
+			ft_ps_do_op(game, SB);
+		while (game->b_size)
+			ft_ps_do_op(game, PA);
 	}
-	while (flag && var != 5 && game->b_size)
-		ft_ps_do_op(game, PA);
 }
