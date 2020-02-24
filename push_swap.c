@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 20:08:47 by sghezn            #+#    #+#             */
-/*   Updated: 2020/02/03 20:33:15 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/02/25 02:20:53 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	ft_ps_do_op(t_game *game, int op)
 
 /*
 ** A function to quicksort stack A.
-** Resulting operations list is written to op_list_stack.
+**.
+Resulting operations list is written to op_list_stack.
 */
 
 void	ft_ps_quicksort(t_game *game, char stack, int size, int deep)

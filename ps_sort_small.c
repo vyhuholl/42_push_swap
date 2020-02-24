@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 20:36:34 by sghezn            #+#    #+#             */
-/*   Updated: 2020/02/16 19:34:14 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/02/25 02:00:47 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,36 +56,6 @@ int		ft_ps_three_numbers_case(t_stack *stack)
 }
 
 /*
-** A function to sort stack A with size > 3.
-*/
-
-void	ft_ps_sort_more_than_three_a(t_game *game, int size, int var)
-{
-	if (var == 4)
-	{
-		ft_ps_do_op(game, RA);
-		ft_ps_do_op(game, SA);
-		ft_ps_do_op(game, RRA);
-		ft_ps_do_op(game, SA);
-	}
-	else if (var == 5)
-	{
-		ft_ps_do_op(game, SA);
-		ft_ps_do_op(game, RA);
-		ft_ps_do_op(game, SA);
-		ft_ps_do_op(game, RRA);
-	}
-	else if (var == 6)
-	{
-		ft_ps_do_op(game, SA);
-		ft_ps_do_op(game, RA);
-		ft_ps_do_op(game, SA);
-		ft_ps_do_op(game, RRA);
-		ft_ps_do_op(game, SA);
-	}
-}
-
-/*
 ** A function to sort a small stack A.
 */
 
@@ -94,27 +64,20 @@ void	ft_ps_sort_small_a(t_game *game, int size)
 	int	var;
 
 	var = ft_ps_three_numbers_case(game->a_top);
-	if (game->a_size > 3)
-		ft_ps_sort_more_than_three_a(game, size, var);
-	else if (size == 2 && game->a_top->value > game->a_top->prev->value)
+	if (game->a_size > 3 && var == 5)
 		ft_ps_do_op(game, SA);
-	else if (var == 2)
-	{
+	if ((game->a_size > 3 && var > 3) ||
+		(game->a_size < 3 && (var == 2 || var == 5)))
 		ft_ps_do_op(game, RA);
+	if ((game->a_size > 3 && var > 3)
+		(game->a_size < 3 && (var == 2 || var == 3 || var == 6))
+		(size == 2 && game->a_top->value > game->a_top->prev->value))
 		ft_ps_do_op(game, SA);
+	if ((game->a_size > 3 && var > 3) ||
+		(game->a_size < 3 && var != 0 && var % 2 == 0))
 		ft_ps_do_op(game, RRA);
-	}
-	else if (var == 3)
+	if (game->a_size > 3 && (var == 4 || var == 6))
 		ft_ps_do_op(game, SA);
-	else if (var == 4)
-		ft_ps_do_op(game, RRA);
-	else if (var == 5)
-		ft_ps_do_op(game, RA);
-	else if (var == 6)
-	{
-		ft_ps_do_op(game, SA);
-		ft_ps_do_op(game, RRA);
-	}
 }
 
 /*
@@ -123,31 +86,21 @@ void	ft_ps_sort_small_a(t_game *game, int size)
 
 void	ft_ps_sort_more_than_three_b(t_game *game, int size, int var)
 {
+	if (var == 1 || var == 2)
+	{
+		if (var == 1)
+			ft_ps_do_op(game, RB);
+		ft_ps_do_op(game, SB);
+	}
+	ft_ps_do_op(game, PA);
+	if (var == 2 || var == 3)
+		ft_ps_do_op(game, SB);
+	ft_ps_do_op(game, PA);
 	if (var == 1)
-	{
-		ft_ps_do_op(game, RB);
-		ft_ps_do_op(game, SB);
-		ft_ps_do_op(game, PA);
-		ft_ps_do_op(game, PA);
 		ft_ps_do_op(game, RRB);
-		ft_ps_do_op(game, PA);
-	}
-	else if (var == 2)
-	{
-		ft_ps_do_op(game, SB);
-		ft_ps_do_op(game, PA);
-		ft_ps_do_op(game, SB);
-		ft_ps_do_op(game, PA);
-		ft_ps_do_op(game, PA);
-	}
-	else if (var == 3)
-	{
-		ft_ps_do_op(game, PA);
-		ft_ps_do_op(game, SB);
-		ft_ps_do_op(game, PA);
+	if (var == 3)
 		ft_ps_do_op(game, SA);
-		ft_ps_do_op(game, PA);
-	}
+	ft_ps_do_op(game, PA);
 }
 
 /*
@@ -159,24 +112,24 @@ void	ft_ps_sort_small_b(t_game *game, int size)
 	int	var;
 
 	var = ft_ps_three_numbers_case(game->b_top);
+	else if ((var == 1 || var == 3) && game->b_size < 4)
+	{
+		if (var == 1)
+			ft_ps_do_op(game, SB);
+		ft_ps_do_op(game, RRB);
+	}
+	else if (var == 2 && game->b_size < 4)
+		ft_ps_do_op(game, RB);
+	else if (game->b_size < 4 && (var == 4 || var == 5 ||
+			(size == 2 && game->b_top->value < game->b_top->prev->value)))
+	{
+		if (var == 5)
+			ft_ps_do_op(game, PA);
+		ft_ps_do_op(game, SB);
+	}
 	if (game->b_size > 3)
 		ft_ps_sort_more_than_three_b(game, size, var);
 	else
-	{
-		if (size == 2 && game->b_top->value < game->b_top->prev->value)
-			ft_ps_do_op(game, SB);
-		else if (var == 1)
-		{
-			ft_ps_do_op(game, SB);
-			ft_ps_do_op(game, RRB);
-		}
-		else if (var == 2)
-			ft_ps_do_op(game, RB);
-		else if (var == 3)
-			ft_ps_do_op(game, RRB);
-		else if (var == 4)
-			ft_ps_do_op(game, SB);
 		while (game->b_size)
 			ft_ps_do_op(game, PA);
-	}
 }
