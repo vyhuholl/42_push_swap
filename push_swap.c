@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 20:08:47 by sghezn            #+#    #+#             */
-/*   Updated: 2020/02/25 02:20:53 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/02/29 23:24:03 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,38 +38,6 @@ void	ft_ps_do_op(t_game *game, int op)
 		elem->prev = game->op_list_stack;
 		game->op_list_stack->next = elem;
 		game->op_list_stack = elem;
-	}
-}
-
-/*
-** A function to quicksort stack A.
-**.
-Resulting operations list is written to op_list_stack.
-*/
-
-void	ft_ps_quicksort(t_game *game, char stack, int size, int deep)
-{
-	int	pivot;
-
-	if (size <= 3)
-		if (stack == 'a')
-			ft_ps_sort_small_a(game, size);
-		else
-			ft_ps_sort_small_b(game, size);
-	else
-	{
-		if (stack == 'a')
-		{
-			pivot = ft_ps_partition_a(game, size, deep, -1);
-			ft_ps_quicksort(game, pivot, 'a', deep + 1);
-			ft_ps_quicksort(game, size - pivot, 'b', deep + 1);
-		}
-		else
-		{
-			pivot = ft_ps_partition_b(game, size);
-			ft_ps_quicksort(game, size - pivot, 'a', deep + 1);
-			ft_ps_quicksort(game, pivot, 'b', deep + 1);
-		}
 	}
 }
 
@@ -137,7 +105,7 @@ int		main(int argc, char **argv)
 	}
 	if (ft_is_sorted(game.a_top))
 		return (0);
-	ft_ps_quicksort(&game, 'a', game.a_size, 0);
+	ft_ps_quicksort(&game, game.a_size);
 	ft_ps_print_res(game.op_list_stack);
 	ft_del_stack(&game.op_list_stack);
 	return (0);
