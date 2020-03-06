@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 16:35:42 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/03 10:28:56 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/06 13:21:07 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void				ft_ps_do_op(t_game *game, int op);
 int					ft_ps_three_numbers_case(t_stack *stack);
 void				ft_ps_sort_small_a(t_game *game, int size);
 void				ft_ps_sort_small_b(t_game *game, int size);
+int					ft_ps_get_pivot(t_game *game, char stack, int size);
 void				ft_ps_quicksort_a(t_game *game, int size);
 void				ft_ps_quicksort_b(t_game *game, int size);
 void				ft_ps_print_op(int op);
