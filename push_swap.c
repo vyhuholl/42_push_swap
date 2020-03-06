@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 20:08:47 by sghezn            #+#    #+#             */
-/*   Updated: 2020/02/29 23:24:03 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/03 10:29:34 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int		main(int argc, char **argv)
 	}
 	if (ft_is_sorted(game.a_top))
 		return (0);
-	ft_ps_quicksort(&game, game.a_size);
+	ft_ps_quicksort_a(&game, game.a_size);
 	ft_ps_print_res(game.op_list_stack);
 	ft_del_stack(&game.op_list_stack);
 	return (0);
