@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 20:36:34 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/06 13:14:33 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/06 13:51:17 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,48 @@
 /*
 ** Utility functions to sort small stacks.
 */
+
+int		ft_ps_get_pivot(t_game *game, char stack, int size)
+{
+	t_stack	*ptr;
+	int		*tab;
+	int		len;
+	int		res;
+
+	ptr = stack == 'a' ? game->a_top : game->b_top;
+	res = 0;
+	tab = (int*)malloc(sizeof(int) * size);
+	if (tab)
+	{
+		len = 0;
+		while (ptr && size--)
+		{
+			tab[len++] = ptr->value;
+			ptr = ptr->prev;
+		}
+		ft_quicksort(&tab, &tab, 0, len - 1);
+		res = tab[len / 2];
+		free(size);
+	}
+	else
+		return (-1);
+	return (res);
+}
+
+int		ft_ps_not_all_pushed(t_game *game, char stack, int size, int pivot)
+{
+	t_stack	*ptr;
+
+	ptr = stack == 'a' ? game->a_top : game->b_top;
+	while (size--)
+	{
+		if ((stack == 'a' && ptr->value < pivot) ||
+			(stack == 'b' && ptr->value > pivot))
+			return (1);
+		ptr = ptr->prev;
+	}
+	return (0);
+}
 
 /*
 ** A function to determine how the first three numbers are arranged in a stack.

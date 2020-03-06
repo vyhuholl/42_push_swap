@@ -14,7 +14,7 @@ For more detailed explanation please read `push_swap.en.pdf`.<br><br>
 I implemented a quicksort algorithm:<br><br>
 
 1. Pivot element is selected.
-2. Partition: all elements of stack A with values less than the pivot are pushed to stack B, all elements of stack B with values greater than the pivot are pushed to stack A.
+2. Partition: all elements of stack A with values less than the pivot are pushed to stack B, all elements of stack B with values greater than the pivot are pushed to stack A (via push and rotate operations).
 3. Stack A is sorted recursively.
 4. Stack B is sorted recursively.
 
