@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 23:22:38 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/06 14:00:09 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/06 14:06:05 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,30 @@
 
 void	ft_ps_push_rotate_a(t_game *game, int pivot, int *ra, int *pb)
 {
-	
+	if (game->a_top->value < pivot)
+	{
+		ft_ps_do_op(game, PB);
+		(*pb)++;
+	}
+	else
+	{
+		ft_ps_do_op(game, RA);
+		(*ra)++;		
+	}
 }
 
 void	ft_ps_push_rotate_b(t_game *game, int pivot, int *rb, int *pa)
 {
-	
+	if (game->a_top->value > pivot)
+	{
+		ft_ps_do_op(game, PA);
+		(*pa)++;
+	}
+	else
+	{
+		ft_ps_do_op(game, RB);
+		(*rb)++;		
+	}
 }
 
 /*
