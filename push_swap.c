@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
+/*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 20:08:47 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/06 13:19:50 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/07 16:52:21 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,28 @@ void	ft_ps_do_op(t_game *game, int op)
 		game->op_list_stack->next = elem;
 		game->op_list_stack = elem;
 	}
+}
+
+void	ft_ps_optimize(t_game *game)
+{
+	ft_ps_op_remove(game, SA, SA, RB);
+	ft_ps_op_remove(game, SB, SB, RA);
+	ft_ps_op_remove(game, SA, SA, RRB);
+	ft_ps_op_remove(game, SB, SB, RRA);
+	ft_ps_op_remove(game, RA, RRA, SB);
+	ft_ps_op_remove(game, RB, RRB, SA);
+	ft_ps_op_remove(game, RRA, RA, SB);
+	ft_ps_op_remove(game, RRB, RB, SA);
+	ft_ps_op_remove(game, PA, PB, 0);
+	ft_ps_op_remove(game, PB, PA, 0);
+	ft_ps_op_combine(game, SA, SB, RA);
+	ft_ps_op_combine(game, SB, SA, RB);
+	ft_ps_op_combine(game, SA, SB, RRA);
+	ft_ps_op_combine(game, SB, SA, RRB);
+	ft_ps_op_combine(game, RA, RB, SA);
+	ft_ps_op_combine(game, RB, RA, SB);
+	ft_ps_op_combine(game, RRA, RRB, SA);
+	ft_ps_op_combine(game, RRB, RRA, SB);
 }
 
 /*
@@ -106,6 +128,7 @@ int		main(int argc, char **argv)
 	if (ft_is_sorted(game.a_top))
 		return (0);
 	ft_ps_quicksort_a(&game, game.a_size);
+	ft_ps_optimize(game);
 	ft_ps_print_res(game.op_list_stack);
 	ft_del_stack(&game.op_list_stack);
 	return (0);

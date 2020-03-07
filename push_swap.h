@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
+/*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 16:35:42 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/06 14:01:02 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/07 16:56:13 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void				ft_op_rotate(t_game *game, int op);
 void				ft_op_reverse_rotate(t_game *game, int op);
 void				ft_do_op(t_game *game, int op);
 int					ft_is_sorted(t_stack *stack);
+void				ft_del_top(t_stack **stack);
 void				ft_del_stack(t_stack **stack);
 
 int					ft_checker_read_op(char *line);
@@ -93,8 +94,14 @@ void				ft_ps_push_rotate_a(t_game *game, int pivot,
 					int *ra, int *pb);
 void				ft_ps_push_rotate_b(t_game *game, int pivot,
 					int *rb, int *pa);
+void				ft_ps_rotate(t_game *game, char stack, int r);
 void				ft_ps_quicksort_a(t_game *game, int size);
 void				ft_ps_quicksort_b(t_game *game, int size);
+void				ft_ps_op_remove(t_game *game,
+					int op_1, int op_2, int skip);
+void				ft_ps_op_replace(t_game *game,
+					int op_1, int op_2, int skip);
+void				ft_ps_optimize(t_game *game);
 void				ft_ps_print_op(int op);
 void				ft_ps_print_res(t_stack *res);
 

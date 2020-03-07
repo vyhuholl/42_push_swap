@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_sort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
+/*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 23:22:38 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/06 14:06:05 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/07 16:05:01 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void	ft_ps_push_rotate_a(t_game *game, int pivot, int *ra, int *pb)
 	else
 	{
 		ft_ps_do_op(game, RA);
-		(*ra)++;		
+		(*ra)++;
 	}
 }
 
 void	ft_ps_push_rotate_b(t_game *game, int pivot, int *rb, int *pa)
 {
-	if (game->a_top->value > pivot)
+	if (game->b_top->value > pivot)
 	{
 		ft_ps_do_op(game, PA);
 		(*pa)++;
@@ -36,7 +36,29 @@ void	ft_ps_push_rotate_b(t_game *game, int pivot, int *rb, int *pa)
 	else
 	{
 		ft_ps_do_op(game, RB);
-		(*rb)++;		
+		(*rb)++;
+	}
+}
+
+void	ft_ps_rotate(t_game *game, char stack, int r)
+{
+	if (stack == 'a')
+	{
+		if (r > game->a_size / 2)
+			while (game->a_size - r++)
+				ft_ps_do_op(game, RA);
+		else
+			while (r--)
+				ft_ps_do_op(game, RRA);
+	}
+	else
+	{
+		if (r > game->b_size / 2)
+			while (game->b_size - r++)
+				ft_ps_do_op(game, RB);
+		else
+			while (r--)
+				ft_ps_do_op(game, RRB);
 	}
 }
 
@@ -62,6 +84,11 @@ void	ft_ps_quicksort_a(t_game *game, int size)
 		pivot = ft_ps_get_pivot(game, 'a', size);
 		while (ft_ps_not_all_pushed(game, 'a', size - i, pivot) && i++ < size)
 			ft_ps_push_rotate_a(game, pivot, &ra, &pb);
+		ft_ps_rotate(game, 'a', ra);
+		ft_ps_quicksort_a(game, size - pb);
+		ft_ps_quicksort_b(game, pb);
+		while (game->b_top && pb--)
+			ft_ps_do_op(game, PA);
 	}
 }
 
@@ -87,5 +114,10 @@ void	ft_ps_quicksort_b(t_game *game, int size)
 		pivot = ft_ps_get_pivot(game, 'b', size);
 		while (ft_ps_not_all_pushed(game, 'b', size - i, pivot) && i++ < size)
 			ft_ps_push_rotate_b(game, pivot, &rb, &pa);
+		ft_ps_rotate(game, 'b', rb);
+		ft_ps_quicksort_a(game, pa);
+		ft_ps_quicksort_b(game, size - pa);
+		while (game->a_top && pa--)
+			ft_ps_do_op(game, PB);
 	}
 }

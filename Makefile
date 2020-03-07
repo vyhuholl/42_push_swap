@@ -6,7 +6,7 @@
 #    By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/03 15:31:07 by sghezn            #+#    #+#              #
-#    Updated: 2020/02/29 23:23:18 by sghezn           ###   ########.fr        #
+#    Updated: 2020/03/07 16:18:16 by sghezn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME_PS := push_swap
 
 SRC := error.c get_next_line.c operation.c sort.c stack.c
 SRC_CH := checker.c
-SRC_PS := ps_sort_small.c ps_sort.c push_swap.c
+SRC_PS := ps_sort_small.c ps_sort.c ps_optimize.c push_swap.c
 
 OBJ := $(SRC:%.c=%.o)
 OBJ_CH := $(SRC_CH:%.c=%.o)

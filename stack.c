@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 17:18:49 by sghezn            #+#    #+#             */
-/*   Updated: 2020/01/31 20:14:58 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/07 16:50:33 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,27 @@ void	ft_do_op(t_game *game, int op)
 }
 
 /*
+** A function to delete one element of a stack.
+*/
+
+void	ft_del_top(t_stack **stack)
+{
+	t_stack	**temp;
+
+	if (*stack)
+	{
+		if ((*stack)->next)
+			(*stack)->next->prev = (*stack)->prev;
+		if ((*stack)->prev)
+			(*stack)->prev->next = (*stack)->next;
+		temp = (*stack)->next;
+		ft_memdel((void**)stack);
+		*stack = temp;
+	}
+	*stack = NULL;
+}
+
+/*
 ** A function to delete a stack.
 */
 
@@ -108,15 +129,15 @@ void	ft_del_stack(t_stack **stack)
 	temp = *stack;
 	while (temp->prev)
 	{
-		temp = (*elem)->prev;
-		ft_memdel((void**)elem);
-		*elem = temp;
+		temp = (*stack)->prev;
+		ft_memdel((void**)stack);
+		*stack = temp;
 	}
 	while (temp->next)
 	{
-		temp = (*elem)->next;
-		ft_memdel((void**)elem);
-		*elem = temp;
+		temp = (stack)->next;
+		ft_memdel((void**)stack);
+		*stack = temp;
 	}
 	temp ? ft_memdel((void**)&temp) : 0;
 	stack = NULL;
