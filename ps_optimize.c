@@ -6,11 +6,15 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 16:17:44 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/07 20:21:17 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/07 20:56:51 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** Utility functions to replace or remove redundant sets of operations.
+*/
 
 void	ft_ps_op_remove(t_game *game, int op_1, int op_2, int skip)
 {
