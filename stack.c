@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 17:18:49 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/10 12:44:45 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/10 14:05:08 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int		ft_index(t_game *game, int argc)
 	int		*temp;
 	int		i;
 
-	if (!(temp = (int*)malloc(sizeof(int) * (argc - 1))))
+	if (!(temp = (int*)malloc(sizeof(int) * (game->a_size))))
 		return (-1);
 	i = 0;
 	ptr = game->a_top;
@@ -71,7 +71,7 @@ int		ft_index(t_game *game, int argc)
 		ptr = ptr->prev;
 	}
 	ft_quicksort(&temp, 0, argc - 2);
-	ft_index_util(game, temp, argc);
+	ft_index_util(game, temp, argc - 1);
 	free(temp);
 	return (1);
 }
@@ -126,17 +126,23 @@ void	ft_del_stack(t_stack **stack)
 	if (!*stack)
 		return ;
 	temp = *stack;
-	while (temp->prev)
+	if (temp->prev)
 	{
-		temp = (*stack)->prev;
-		ft_memdel((void**)stack);
-		*stack = temp;
+		while (temp->prev)
+		{
+			temp = (*stack)->prev;
+			ft_memdel((void**)stack);
+			*stack = temp;
+		}
 	}
-	while (temp->next)
+	else if (temp->next)
 	{
-		temp = (*stack)->next;
-		ft_memdel((void**)stack);
-		*stack = temp;
+		while (temp->next)
+		{
+			temp = (*stack)->next;
+			ft_memdel((void**)stack);
+			*stack = temp;
+		}
 	}
 	temp ? ft_memdel((void**)&temp) : 0;
 	stack = NULL;

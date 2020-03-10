@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:37:03 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/10 11:30:06 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/10 13:59:23 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,15 @@ void	ft_index_util(t_game *game, int *temp, int argc)
 	ptr = game->a_top;
 	while (ptr)
 	{
-		i = -1;
-		while (++i < argc)
+		i = 0;
+		while (i < argc - 1)
 		{
 			if (temp[i] == ptr->value)
 			{
 				ptr->index = i;
 				break ;
 			}
+			i++;
 		}
 		ptr = ptr->prev;
 	}
@@ -62,7 +63,7 @@ int		ft_partition(int **array, int low, int high)
 
 	pivot = (*array)[high];
 	i = low;
-	j = 0;
+	j = low;
 	while (j < high)
 	{
 		if ((*array)[j] < pivot)
