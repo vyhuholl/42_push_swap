@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 20:36:23 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/10 12:43:02 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/10 12:49:22 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	ft_atoi_limit(char *nbr, int *res)
 
 int	ft_check_duplicates(t_game *game, char *nbr)
 {
-	if (!ft_atoi_limit(nbr, &(game->a_stack->value)))
+	if (ft_atoi_limit(nbr, &(game->a_stack->value)) == -1)
 		return (-1);
 	game->b_stack = game->a_top;
 	while (game->a_stack != game->b_stack)
