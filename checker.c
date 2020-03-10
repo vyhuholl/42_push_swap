@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 16:57:44 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/10 12:44:22 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/10 12:58:32 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,19 @@ int	ft_checker_do_op(t_game *game, char *line)
 	int		op;
 
 	len = ft_strlen(line);
-	if (len < 3 || len > 4 || line[len - 1] != '\n')
+	if (len < 2 || len > 3)
 	{
 		ft_memdel((void**)&line);
 		return (-1);
 	}
 	line[len - 1] = '\0';
-	if ((op = ft_checker_read_op(line)))
+	if ((op = ft_checker_read_op(line)) != -1)
 		ft_do_op(game, op);
+	else
+	{
+		ft_memdel((void**)&line);
+		return (-1);
+	}
 	ft_memdel((void**)&line);
 	return (1);
 }
