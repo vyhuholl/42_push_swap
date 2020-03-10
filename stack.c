@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 17:18:49 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/07 16:50:33 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/10 11:27:52 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,14 @@ int		ft_index(t_game *game, int argc, char **argv)
 	if (!(temp = (int*)malloc(sizeof(int) * (argc - 1))))
 		return (-1);
 	i = 0;
-	while (i < argc - 1)
-		temp[i] = i++;
-	ft_quicksort(&temp, argv, 0, argc - 2);
 	ptr = game->a_top;
 	while (ptr)
 	{
-		ptr->index = temp[--argc];
+		temp[i++] = ptr->value;
 		ptr = ptr->prev;
 	}
+	ft_quicksort(&temp, 0, argc - 2);
+	ft_index_util(game, temp, argc);
 	free(temp);
 	return (1);
 }

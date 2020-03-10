@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 20:08:47 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/07 16:52:21 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/10 11:05:40 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_ps_do_op(t_game *game, int op)
 	else
 	{
 		elem = ft_memalloc(sizeof(t_stack));
-		elem->val = op;
+		elem->value = op;
 		elem->prev = game->op_list_stack;
 		game->op_list_stack->next = elem;
 		game->op_list_stack = elem;
@@ -53,14 +53,14 @@ void	ft_ps_optimize(t_game *game)
 	ft_ps_op_remove(game, RRB, RB, SA);
 	ft_ps_op_remove(game, PA, PB, 0);
 	ft_ps_op_remove(game, PB, PA, 0);
-	ft_ps_op_combine(game, SA, SB, RA);
-	ft_ps_op_combine(game, SB, SA, RB);
-	ft_ps_op_combine(game, SA, SB, RRA);
-	ft_ps_op_combine(game, SB, SA, RRB);
-	ft_ps_op_combine(game, RA, RB, SA);
-	ft_ps_op_combine(game, RB, RA, SB);
-	ft_ps_op_combine(game, RRA, RRB, SA);
-	ft_ps_op_combine(game, RRB, RRA, SB);
+	ft_ps_op_replace(game, SA, SB, RA);
+	ft_ps_op_replace(game, SB, SA, RB);
+	ft_ps_op_replace(game, SA, SB, RRA);
+	ft_ps_op_replace(game, SB, SA, RRB);
+	ft_ps_op_replace(game, RA, RB, SA);
+	ft_ps_op_replace(game, RB, RA, SB);
+	ft_ps_op_replace(game, RRA, RRB, SA);
+	ft_ps_op_replace(game, RRB, RRA, SB);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 15:37:03 by sghezn            #+#    #+#             */
-/*   Updated: 2020/01/27 20:06:17 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/10 11:30:06 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,34 @@
 ** Functions to perform a quicksort.
 */
 
+void	ft_index_util(t_game *game, int *temp, int argc)
+{
+	t_stack	*ptr;
+	int		i;
+
+	ptr = game->a_top;
+	while (ptr)
+	{
+		i = -1;
+		while (++i < argc)
+		{
+			if (temp[i] == ptr->value)
+			{
+				ptr->index = i;
+				break ;
+			}
+		}
+		ptr = ptr->prev;
+	}
+}
+
 /*
 ** Utility function to swap two numbers.
 */
 
 void	ft_swap(int *a, int *b)
 {
-	int	*temp;
+	int	temp;
 
 	temp = *a;
 	*a = *b;
@@ -33,18 +54,18 @@ void	ft_swap(int *a, int *b)
 ** A function to find a pivot element index.
 */
 
-int		ft_partition(int **array, int **sort_by, int low, int high)
+int		ft_partition(int **array, int low, int high)
 {
 	int	pivot;
 	int i;
 	int j;
 
-	pivot = (*sort_by)[high];
+	pivot = (*array)[high];
 	i = low;
 	j = 0;
 	while (j < high)
 	{
-		if ((*sort_by)[j] < pivot)
+		if ((*array)[j] < pivot)
 			ft_swap(&((*array)[i++]), &((*array)[j]));
 		j++;
 	}
@@ -53,18 +74,18 @@ int		ft_partition(int **array, int **sort_by, int low, int high)
 }
 
 /*
-** A function to quicksort an array by another array or by itself.
+** A function to quicksort an array.
 */
 
-void	ft_quicksort(int **array, int **sort_by, int low, int high)
+void	ft_quicksort(int **array, int low, int high)
 {
 	int	pivot;
 
 	if (low < high)
 	{
-		pivot = ft_partition(array, sort_by, low, high);
-		ft_quicksort(array, sort_by, low, pivot - 1);
-		ft_quicksort(array, sort_by, pivot + 1, high);
+		pivot = ft_partition(array, low, high);
+		ft_quicksort(array, low, pivot - 1);
+		ft_quicksort(array, pivot + 1, high);
 	}
 }
 

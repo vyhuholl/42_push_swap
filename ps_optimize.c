@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 16:17:44 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/10 11:02:23 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/10 11:07:28 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_ps_op_remove(t_game *game, int op_1, int op_2, int skip)
 	}
 }
 
-void	ft_ps_op_replace_util(t_stack **temp, t_stack **ptr, int op_1, int op_2)
+void	ft_ps_op_replace_util(t_stack **temp, t_stack **ptr, int op_1, int op)
 {
 	(*temp)->value = op;
 	ft_del_top(ptr);
@@ -72,7 +72,7 @@ void	ft_ps_op_replace(t_game *game, int op_1, int op_2, int skip)
 			temp = ptr;
 		else if (temp && ptr->value == op_2)
 		{
-			ft_ps_op_replace_util(&temp, &ptr, op_1, op_2);
+			ft_ps_op_replace_util(&temp, &ptr, op_1, op);
 			continue ;
 		}
 		else if (ptr->value != op_1 && ptr->value != skip && ptr->value != op)
