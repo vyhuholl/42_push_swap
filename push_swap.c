@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 20:08:47 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/10 12:48:05 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/10 17:05:23 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ int		main(int argc, char **argv)
 		return (0);
 	ft_ps_quicksort_a(&game, game.a_size);
 	ft_ps_optimize(&game);
-	ft_ps_print_res(game.op_list_stack);
-	ft_del_stack(&game.op_list_stack);
+	ft_ps_print_res(game.op_list_top);
+	ft_del_stack(&game.op_list_top);
 	return (0);
 }
