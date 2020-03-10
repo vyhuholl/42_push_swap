@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 16:35:42 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/07 16:56:13 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/10 10:58:25 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ void				ft_ps_quicksort_a(t_game *game, int size);
 void				ft_ps_quicksort_b(t_game *game, int size);
 void				ft_ps_op_remove(t_game *game,
 					int op_1, int op_2, int skip);
+void				ft_ps_op_replace_util(t_stack **temp, t_stack **ptr,
+					int op_1, int op_2);
 void				ft_ps_op_replace(t_game *game,
 					int op_1, int op_2, int skip);
 void				ft_ps_optimize(t_game *game);

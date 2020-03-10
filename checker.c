@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
+/*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 16:57:44 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/03 10:30:55 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/10 10:49:54 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	ft_checker_do_op(t_game *game, char *line)
 	}
 	line[len - 1] = '\0';
 	if ((op = ft_checker_read_op(line)))
-		ft_do_op(game, op));
+		ft_do_op(game, op);
 	ft_memdel((void**)&line);
 	return (1);
 }

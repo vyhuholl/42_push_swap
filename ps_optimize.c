@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_optimize.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
+/*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 16:17:44 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/07 20:56:51 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/10 11:02:23 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,20 @@ void	ft_ps_op_remove(t_game *game, int op_1, int op_2, int skip)
 				ft_del_top(&temp);
 			}
 		}
-		ptr == ptr ? ptr->next : NULL;
+		ptr = (ptr ? ptr->next : NULL);
 	}
+}
+
+void	ft_ps_op_replace_util(t_stack **temp, t_stack **ptr, int op_1, int op_2)
+{
+	(*temp)->value = op;
+	ft_del_top(ptr);
+	if ((*temp)->next && (*temp)->next->value == op_1)
+		*temp = (*temp)->next;
+	else
+		*temp = NULL;
+	*ptr = *temp;
+	*temp = NULL;
 }
 
 void	ft_ps_op_replace(t_game *game, int op_1, int op_2, int skip)
@@ -56,19 +68,15 @@ void	ft_ps_op_replace(t_game *game, int op_1, int op_2, int skip)
 	{
 		if (!ptr->next)
 			break ;
-		if (!temp && ptr->value == op_1)
+		else if (!temp && ptr->value == op_1)
 			temp = ptr;
-		if (temp && ptr->value == op_2)
+		else if (temp && ptr->value == op_2)
 		{
-			temp->value = op;
-			ft_del_top(&ptr);
-			(temp->next && temp->next->value == op_1) ? temp = temp->next : 0;
-			ptr = temp;
-			temp = NULL;
+			ft_ps_op_replace_util(&temp, &ptr, op_1, op_2);
 			continue ;
 		}
-		if (ptr->value != op_1 && && ptr->value != skip && ptr->value != op)
+		else if (ptr->value != op_1 && ptr->value != skip && ptr->value != op)
 			temp = NULL;
-		ptr == ptr ? ptr->next : NULL;
+		ptr = (ptr ? ptr->next : NULL);
 	}
 }
