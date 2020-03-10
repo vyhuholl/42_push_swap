@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 16:57:44 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/10 13:39:38 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/10 17:10:24 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ int	ft_checker_do_op(t_game *game, char *line)
 		ft_memdel((void**)&line);
 		return (-1);
 	}
-	ft_putnbr(op);
-	ft_putchar('\n');
 	ft_memdel((void**)&line);
 	return (1);
 }
