@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 17:18:49 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/10 11:36:09 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/10 12:44:45 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int		ft_read_stack(t_game *game, int argc, char **argv)
 {
 	int	i;
 
-	i = 1;
-	while (i < argc)
+	i = 0;
+	while (++i < argc)
 	{
-		if (!ft_is_numeric(argv[i]))
+		if (ft_is_numeric(argv[i]) == -1)
 			return (-1);
 		if (!game->a_stack)
 		{
@@ -43,7 +43,7 @@ int		ft_read_stack(t_game *game, int argc, char **argv)
 			game->a_stack->prev->next = game->a_stack;
 			game->a_stack = game->a_stack->prev;
 		}
-		if (!ft_check_duplicates(game, argv[i++]))
+		if (ft_check_duplicates(game, argv[i]) == -1)
 			return (-1);
 	}
 	game->a_size = argc - 1;
