@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ps_sort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
+/*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 23:22:38 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/07 20:57:16 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/10 11:41:41 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_ps_push_rotate_a(t_game *game, int pivot, int *ra, int *pb)
+void	ft_ps_push_rotate_a(t_game *game, int pivot, size_t *ra, size_t *pb)
 {
 	if (game->a_top->value < pivot)
 	{
@@ -26,7 +26,7 @@ void	ft_ps_push_rotate_a(t_game *game, int pivot, int *ra, int *pb)
 	}
 }
 
-void	ft_ps_push_rotate_b(t_game *game, int pivot, int *rb, int *pa)
+void	ft_ps_push_rotate_b(t_game *game, int pivot, size_t *rb, size_t *pa)
 {
 	if (game->b_top->value > pivot)
 	{
@@ -40,7 +40,7 @@ void	ft_ps_push_rotate_b(t_game *game, int pivot, int *rb, int *pa)
 	}
 }
 
-void	ft_ps_rotate(t_game *game, char stack, int r)
+void	ft_ps_rotate(t_game *game, char stack, size_t r)
 {
 	if (stack == 'a')
 	{
@@ -69,10 +69,10 @@ void	ft_ps_rotate(t_game *game, char stack, int r)
 
 void	ft_ps_quicksort_a(t_game *game, int size)
 {
-	int	pivot;
-	int	ra;
-	int	pb;
-	int	i;
+	int		pivot;
+	size_t	ra;
+	size_t	pb;
+	int		i;
 
 	if (size <= 3)
 		ft_ps_sort_small_a(game, size);
@@ -99,10 +99,10 @@ void	ft_ps_quicksort_a(t_game *game, int size)
 
 void	ft_ps_quicksort_b(t_game *game, int size)
 {
-	int	pivot;
-	int	rb;
-	int	pa;
-	int	i;
+	int		pivot;
+	size_t	rb;
+	size_t	pa;
+	int		i;
 
 	if (size <= 3)
 		ft_ps_sort_small_b(game, size);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_sort_small.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
+/*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 20:36:34 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/06 13:51:17 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/10 11:37:37 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int		ft_ps_get_pivot(t_game *game, char stack, int size)
 			tab[len++] = ptr->value;
 			ptr = ptr->prev;
 		}
-		ft_quicksort(&tab, &tab, 0, len - 1);
+		ft_quicksort(&tab, 0, len - 1);
 		res = tab[len / 2];
-		free(size);
+		free(tab);
 	}
 	else
 		return (-1);

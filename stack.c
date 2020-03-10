@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 17:18:49 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/10 11:27:52 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/10 11:36:09 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		ft_read_stack(t_game *game, int argc, char **argv)
 ** Returns -1 in case of a memory error.
 */
 
-int		ft_index(t_game *game, int argc, char **argv)
+int		ft_index(t_game *game, int argc)
 {
 	t_stack	*ptr;
 	int		*temp;
@@ -100,7 +100,7 @@ void	ft_do_op(t_game *game, int op)
 
 void	ft_del_top(t_stack **stack)
 {
-	t_stack	**temp;
+	t_stack	*temp;
 
 	if (*stack)
 	{
@@ -134,7 +134,7 @@ void	ft_del_stack(t_stack **stack)
 	}
 	while (temp->next)
 	{
-		temp = (stack)->next;
+		temp = (*stack)->next;
 		ft_memdel((void**)stack);
 		*stack = temp;
 	}
