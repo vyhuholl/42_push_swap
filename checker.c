@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 16:57:44 by sghezn            #+#    #+#             */
-/*   Updated: 2020/03/10 17:10:24 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/12 17:55:04 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,15 @@ int	ft_checker_do_op(t_game *game, char *line)
 		return (-1);
 	}
 	if ((op = ft_checker_read_op(line)) != -1)
+	{
+		ft_memdel((void**)&line);
 		ft_do_op(game, op);
+	}
 	else
 	{
 		ft_memdel((void**)&line);
 		return (-1);
 	}
-	ft_memdel((void**)&line);
 	return (1);
 }
 
@@ -99,9 +101,9 @@ int	main(int argc, char **argv)
 			return (-1);
 		}
 	}
-	if (ft_is_sorted(game.a_top) && game.b_size == 0)
-		ft_putstr("OK\n");
-	else
-		ft_putstr("KO\n");
+	(ft_is_sorted(game.a_top) && game.b_size == 0) ? ft_putstr("OK\n") : 0;
+	!(ft_is_sorted(game.a_top) && game.b_size == 0) ? ft_putstr("KO\n") : 0;
+	ft_del_stack(&game.a_top);
+	ft_del_stack(&game.b_top);
 	return (0);
 }
