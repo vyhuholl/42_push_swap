@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 11:37:12 by sghezn            #+#    #+#             */
-/*   Updated: 2020/01/20 19:13:20 by sghezn           ###   ########.fr       */
+/*   Updated: 2020/03/12 18:19:48 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,10 @@ int		ft_check(char **str, char **tab, char **line)
 		ptr = *str;
 		*str = ft_strdup(*str + res + 1);
 		free(ptr);
+		free(*tab);
 		return (1);
 	}
+	free(*tab);
 	return (0);
 }
 
@@ -84,7 +86,6 @@ int		get_next_line(const int fd, char **line)
 	while ((ret = read(fd, temp, BUFF_SIZE)))
 	{
 		res = ft_check(&str[fd], &temp, line);
-		free(temp);
 		if (res == 1)
 			return (1);
 		temp = ft_strnew(BUFF_SIZE);
